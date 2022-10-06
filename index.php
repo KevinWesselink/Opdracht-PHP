@@ -8,6 +8,12 @@
     <title>Opdracht PHP</title>
 </head>
 <body>
+    <nav>
+        <a href="./index.php">Hoofdstuk 2</a>
+        <a href="./Hoofdstuk%203.php">Hoofdstuk 3</a>
+        <a href="./Pizza.php">Pizza</a>
+        <a href="./Rente.php">Rente</a>
+    </nav>
 
     <?php
         phpinfo();
