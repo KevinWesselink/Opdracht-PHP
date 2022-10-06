@@ -1,3 +1,12 @@
+<?php
+$naam = '';
+$land = '';
+if (isset($_POST["submit"])) {
+    $naam = $_POST["naam"];
+    $land = $_POST["land"];
+}
+
+?>
 <!doctype html>
 <html lang="nl">
 <head>
@@ -8,32 +17,72 @@
     <title>Hoofdstuk 3</title>
 </head>
 <body>
+    <nav>
+        <a href="./index.php">Hoofdstuk 2</a>
+        <a href="./Hoofdstuk%203.php">Hoofdstuk 3</a>
+    </nav>
 
     <form method="post" action="">
-        Naam: <input type="text" name="naam" placeholder="Uw naam" required><br>
+        Naam: <input type="text" name="naam" placeholder="Uw naam" value="<?php echo $naam ?>" required><br>
         Land:
         <select name="land">
-            <option value="NL">Nederland</option>
-            <option value="DE">Duitsland</option>
-            <option value="EN">Engeland</option>
+            <option value="CHOICE">Maak uw keuze</option>
+            <option value="NL" <?php if ($land == 'NL') { echo 'selected';} ?>>Nederland</option>
+            <option value="DE" <?php if ($land == 'DE') { echo 'selected';} ?>>Duitsland</option>
+            <option value="EN" <?php if ($land == 'EN') { echo 'selected';} ?>>Engeland</option>
+            <option value="FR" <?php if ($land == 'FR') { echo 'selected';} ?>>Frankrijk</option>
+            <option value="ES" <?php if ($land == 'ES') { echo 'selected';} ?>>Spanje</option>
+            <option value="IT" <?php if ($land == 'IT') { echo 'selected';} ?>>Italië</option>
         </select>
         <br>
-        <input type="submit" name="submit" value="gegevens versturen">
+        <input type="submit" name="submit" value="Gegevens versturen">
     </form>
 
     <?php
     if (isset($_POST["submit"])) {
-        $naam = $_POST["naam"];
-        $land = $_POST["land"];
-        if ($land == 'NL') {
-            echo 'Goedemorgen' . $naam;
+        switch ($land) {
+            case 'NL':
+                echo 'Goedemorgen' . ' ' . $naam;
+                break;
+            case 'DE':
+                echo 'Guten morgen' . ' ' . $naam;
+                break;
+            case 'EN':
+                echo 'Good morning' . ' ' . $naam;
+                break;
+            case 'FR':
+                echo 'Bonjour' . ' ' . $naam;
+                break;
+            case 'ES':
+                echo 'Buenos dìas' . ' ' . $naam;
+                break;
+            case 'IT':
+                echo 'Buongiorno' . ' ' . $naam;
+                break;
+            default:
+                echo 'U moet nog een taal kiezen!';
         }
-        elseif ($land == DE) {
-            echo 'Guten Morgen' . $naam;
-        }
-        elseif ($land == EN) {
-            echo 'Good morning';
-        }
+//        if ($land == 'CHOICE') {
+//            echo 'U moet nog een taal kiezen!';
+//        }
+//        elseif ($land == 'NL') {
+//            echo 'Goedemorgen' . ' ' . $naam;
+//        }
+//        elseif ($land == 'DE') {
+//            echo 'Guten Morgen' . ' ' . $naam;
+//        }
+//        elseif ($land == 'EN') {
+//            echo 'Good morning' . ' ' . $naam;
+//        }
+//        elseif ($land == 'FR') {
+//            echo 'Bonjour' . ' ' . $naam;
+//        }
+//        elseif ($land == 'ES') {
+//            echo 'Buenos dìas' . ' ' . $naam;
+//        }
+//        elseif ($land == 'IT') {
+//            echo 'Buongiorno' . ' ' .  $naam;
+//        }
     }
     ?>
 
