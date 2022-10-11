@@ -3,24 +3,76 @@ $name = '';
 $address = '';
 $postcode = '';
 $location = '';
-$orderDate = date("d/m/Y");
+$orderDate = date("l/d/m/Y");
+echo $orderDate;
 $deliveryMethod = '';
+$numberOfPizza1 = 0;
+$numberOfPizza2 = 0;
+$numberOfPizza3 = 0;
+$numberOfPizza4 = 0;
+$numberOfPizza5 = 0;
+$pizzaPriceMonday = 7.50;
 $pizza = array (
-        array("Pizza Margherita", 12.50),
-        array("Pizza Funghi", 12.50),
-        array("Pizza Marina", 13.95),
-        array("Pizza Hawai", 11.50),
-        array("Pizza Quattro Formaggi", 14.50)
+        array("Pizza Margherita", 12.50, $numberOfPizza1),
+        array("Pizza Funghi", 12.50, $numberOfPizza2),
+        array("Pizza Marina", 13.95, $numberOfPizza3),
+        array("Pizza Hawai", 11.50, $numberOfPizza4),
+        array("Pizza Quattro Formaggi", 14.50, $numberOfPizza5)
 );
+
+function calcPizzaPrice($numberOfPizza1, $numberOfPizza2, $numberOfPizza3, $numberOfPizza4, $numberOfPizza5) {
+    if ($numberOfPizza1 > 0) {
+        $pizza1Totaal = $numberOfPizza1 * 12.50;
+        return $pizza1Totaal;
+    }
+    if ($numberOfPizza2 > 0) {
+        $pizza2Totaal = $numberOfPizza2 + 12.50;
+        return $numberOfPizza2;
+    }
+    if ($numberOfPizza3 > 0) {
+        $pizza3Totaal = $numberOfPizza3 * 13.95;
+    }
+    if ($numberOfPizza4 > 0) {
+        $pizza4Totaal = $numberOfPizza4 * 11.50;
+        return $pizza4Totaal;
+    }
+    if ($numberOfPizza5 > 0) {
+        $pizza5Totaal = $numberOfPizza5 * 14.50;
+        return $pizza5Totaal;
+    }
+    $pizzaPriceFinal = 0;
+}
+
+function calcPizzaPriceMonday($numberOfPizza1, $numberOfPizza2, $numberOfPizza3, $numberOfPizza4, $numberOfPizza5, $pizzaPriceMonday, $orderDate) {
+    if ( $orderDate(l) == "Monday" ) {
+        calcPizzaPrice();
+
+
+    }
+}
+
+function calcPizzaPriceFriday($numberOfPizza1, $numberOfPizza2, $numberOfPizza3, $numberOfPizza4, $numberOfPizza5, $pizzaPriceMonday, $orderDate) {
+    if ( $orderDate(l) == "Friday" ) {
+        $pizzaTotaal = $numberOfPizza1 + $numberOfPizza2 + $numberOfPizza3 + $numberOfPizza4 + $numberOfPizza5;
+
+    }
+}
+
 if (isset($_POST["submit"])) {
     $name = $_POST["name"];
     $address = $_POST["address"];
     $postcode = $_POST["postcode"];
     $location = $_POST["location"];
     $deliveryMethod = $_POST["deliveryMethod"];
-    $pizza = $_POST["pizza"];
+    $pizza1 = $_POST["numberOfPizza1"];
+    $pizza2 = $_POST["numberOfPizza2"];
+    $pizza3 = $_POST["numberOfPizza3"];
+    $pizza4 = $_POST["numberOfPizza4"];
+    $pizza5 = $_POST["numberOfPizza5"];
 }
+
 ?>
+
 <!doctype html>
 <html lang="nl">
 <head>
@@ -53,53 +105,39 @@ if (isset($_POST["submit"])) {
 
             Plaats: <input type="text" name="location" placeholder="Plaats" value="<?php echo $location?>" required minlength="2" maxlength="20"><br>
 
-            Pizza's: <br>
+            Pizza's (20 stuks max.): <br>
             <table>
                 <tr>
                     <th>Pizza naam</th>
                     <th>Pizza prijs</th>
-                    <th>Aantal pizza's</th>
+                    <th>Aantal bestelde pizza's</th>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[0][0];?></td>
                     <td><?php echo $pizza[0][1];?></td>
-                    <td></td>
+                    <td><input type="number" id="$numberOfPizza1" name="numberOfPizza1" placeholder="0" value="<?php echo $numberOfPizza1?>" minlength="0" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[1][0];?></td>
                     <td><?php echo $pizza[1][1];?></td>
-                    <td></td>
+                    <td><input type="number" id="$numberOfPizza2" name="numberOfPizza2" placeholder="0" value="<?php echo $numberOfPizza2?>" minlength="0" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[2][0];?></td>
                     <td><?php echo $pizza[2][1];?></td>
-                    <td></td>
+                    <td><input type="number" id="$numberOfPizza3" name="numberOfPizza3" placeholder="0" value="<?php echo $numberOfPizza3?>" minlength="0" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[3][0];?></td>
                     <td><?php echo $pizza[3][1];?></td>
-                    <td></td>
+                    <td><input type="number" id="$numberOfPizza4" name="numberOfPizza4" placeholder="0" value="<?php echo $numberOfPizza4?>" minlength="0" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[4][0];?></td>
                     <td><?php echo $pizza[4][1];?></td>
-                    <td></td>
+                    <td><input type="number" id="$numberOfPizza5" name="numberOfPizza5" placeholder="0" value="<?php echo $numberOfPizza5?>" minlength="0" maxlength="20"></td>
                 </tr>
             </table>
-<!--            <input type="checkbox" id="pizzaMargherita" name="pizza" value="--><?php //echo $pizza[0][0]?><!--">-->
-<!--            <label for="pizzaMargherita">Pizza Margherita - €12,50</label><br>-->
-<!---->
-<!--            <input type="checkbox" id="pizzaFunghi" name="pizza" value="--><?php //echo $pizza[1][0]?><!--">-->
-<!--            <label for="pizzaFunghi">Pizza Funghi - €12,50</label><br>-->
-<!---->
-<!--            <input type="checkbox" id="pizzaMarina" name="pizza" value="--><?php //echo $pizza[2][0]?><!--">-->
-<!--            <label for="pizzaMarina">Pizza Marina - €13,95</label><br>-->
-<!---->
-<!--            <input type="checkbox" id="pizzaHawai" name="pizza" value="--><?php //echo $pizza[3][0]?><!--">-->
-<!--            <label for="pizzaHawai">Pizza Hawai - €11,50</label><br>-->
-<!---->
-<!--            <input type="checkbox" id="pizzaQuattroFormaggi" value="--><?php //echo $pizza[4][0]?><!--">-->
-<!--            <label for="pizzaQuattroFormaggi">Pizza Quattro Formaggi - €14,50</label><br>-->
 
             Bezorgen of ophalen:
             <input type="radio" id="bezorgen" name="deliveryMethod" value="<?php echo "bezorgen"?>" required>
@@ -109,31 +147,74 @@ if (isset($_POST["submit"])) {
 
             <input type="submit" name="submit" value="Bestelling plaatsen">
         </form>
-        <?php
 
-        if (isset($_POST["submit"])) {
-            switch ($deliveryMethod) {
-                case "bezorgen":
-                    echo "Naam: " . $name . ".\n";
-                    echo "Adres: " . $address . ".\n";
-                    echo "Postcode: " . $postcode . " " . $location . ".\n";
-                    echo "Bestelling geplaatst op: " . $orderDate . ".\n";
-                    echo "Bestelmethode: 'Bezorgen'.\n";
-                    echo "Bestelde pizza('s): " . $pizza . ".\n";
-                    break;
-
-                case "ophalen":
-                    echo "Naam: " . $name . ". \n";
-                    echo "Adres: " . $address . ".\n";
-                    echo "Postcode: " . $postcode . " " . $location . ".\n";
-                    echo "Bestelling geplaatst op: " . $orderDate . ".\n";
-                    echo "Bestelmethode: 'Ophalen'.\n";
-                    echo "Bestelde pizza('s): " . $pizza . ".\n";
-                    break;
-            }
-        }
-
-        ?>
     </div>
 </body>
 </html>
+
+<?php
+switch ($deliveryMethod) {
+        case "bezorgen":
+            echo "Naam: " . $name . ".\n";
+            echo "Adres: " . $address . ".\n";
+            echo "Postcode: " . $postcode . " " . $location . ".\n";
+            echo "Bestelling geplaatst op: " . $orderDate . ".\n";
+            echo "Bestelmethode: 'Bezorgen'.\n";
+            echo "Bestelde pizza('s): \n";
+            ?>
+            <table>
+                <tr>
+                    <th>Pizza naam</th>
+                    <th>Pizza Prijs</th>
+                    <th>Aantal bestelde pizza('s)</th>
+                    <th>Totaalprijs pizza('s)</th>
+                </tr>
+                <tr>
+                    <td><?php echo $pizza[0][0];?></td>
+                    <td><?php echo $pizza[0][1];?></td>
+                    <td><?php echo $numberOfPizza1?></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><?php echo $pizza[1][0];?></td>
+                    <td><?php echo $pizza[1][1];?></td>
+                    <td><?php echo $numberOfPizza2?></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><?php echo $pizza[2][0];?></td>
+                    <td><?php echo $pizza[2][1];?></td>
+                    <td><?php echo $numberOfPizza3?></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><?php echo $pizza[3][0];?></td>
+                    <td><?php echo $pizza[3][1];?></td>
+                    <td><?php echo $numberOfPizza4?></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><?php echo $pizza[4][0];?></td>
+                    <td><?php echo $pizza[4][1];?></td>
+                    <td><?php echo $numberOfPizza5?></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><?php echo $pizzaPriceFinal?></td>
+                </tr>
+            </table>
+            <?php
+            break;
+
+        case "ophalen":
+            echo "Naam: " . $name . ". \n";
+            echo "Adres: " . $address . ".\n";
+            echo "Postcode: " . $postcode . " " . $location . ".\n";
+            echo "Bestelling geplaatst op: " . $orderDate . ".\n";
+            echo "Bestelmethode: 'Ophalen'.\n";
+            echo "Bestelde pizza('s): " . $pizza1 . ".\n";
+            break;
+}
+            ?>
