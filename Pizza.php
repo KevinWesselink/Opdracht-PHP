@@ -12,6 +12,7 @@ $numberOfPizza3 = 0;
 $numberOfPizza4 = 0;
 $numberOfPizza5 = 0;
 $pizzaPriceMonday = 7.50;
+$orderCosts = 5;
 $pizza = array (
         array("Pizza Margherita", 12.50, $numberOfPizza1),
         array("Pizza Funghi", 12.50, $numberOfPizza2),
@@ -19,44 +20,6 @@ $pizza = array (
         array("Pizza Hawai", 11.50, $numberOfPizza4),
         array("Pizza Quattro Formaggi", 14.50, $numberOfPizza5)
 );
-
-function calcPizzaPrice($numberOfPizza1, $numberOfPizza2, $numberOfPizza3, $numberOfPizza4, $numberOfPizza5) {
-    if ($numberOfPizza1 > 0) {
-        $pizza1Totaal = $numberOfPizza1 * 12.50;
-        return $pizza1Totaal;
-    }
-    if ($numberOfPizza2 > 0) {
-        $pizza2Totaal = $numberOfPizza2 + 12.50;
-        return $numberOfPizza2;
-    }
-    if ($numberOfPizza3 > 0) {
-        $pizza3Totaal = $numberOfPizza3 * 13.95;
-    }
-    if ($numberOfPizza4 > 0) {
-        $pizza4Totaal = $numberOfPizza4 * 11.50;
-        return $pizza4Totaal;
-    }
-    if ($numberOfPizza5 > 0) {
-        $pizza5Totaal = $numberOfPizza5 * 14.50;
-        return $pizza5Totaal;
-    }
-    $pizzaPriceFinal = 0;
-}
-
-function calcPizzaPriceMonday($numberOfPizza1, $numberOfPizza2, $numberOfPizza3, $numberOfPizza4, $numberOfPizza5, $pizzaPriceMonday, $orderDate) {
-    if ( $orderDate(l) == "Monday" ) {
-        calcPizzaPrice();
-
-
-    }
-}
-
-function calcPizzaPriceFriday($numberOfPizza1, $numberOfPizza2, $numberOfPizza3, $numberOfPizza4, $numberOfPizza5, $pizzaPriceMonday, $orderDate) {
-    if ( $orderDate(l) == "Friday" ) {
-        $pizzaTotaal = $numberOfPizza1 + $numberOfPizza2 + $numberOfPizza3 + $numberOfPizza4 + $numberOfPizza5;
-
-    }
-}
 
 if (isset($_POST["submit"])) {
     $name = $_POST["name"];
@@ -69,6 +32,12 @@ if (isset($_POST["submit"])) {
     $pizza3 = $_POST["numberOfPizza3"];
     $pizza4 = $_POST["numberOfPizza4"];
     $pizza5 = $_POST["numberOfPizza5"];
+
+    $pizza[0][2] = $pizza1;
+    $pizza[1][2] = $pizza2;
+    $pizza[2][2] = $pizza3;
+    $pizza[3][2] = $pizza4;
+    $pizza[4][2] = $pizza5;
 }
 
 ?>
@@ -115,27 +84,27 @@ if (isset($_POST["submit"])) {
                 <tr>
                     <td><?php echo $pizza[0][0];?></td>
                     <td><?php echo $pizza[0][1];?></td>
-                    <td><input type="number" id="$numberOfPizza1" name="numberOfPizza1" placeholder="0" value="<?php echo $numberOfPizza1?>" minlength="0" maxlength="20"></td>
+                    <td><input type="number" id="$numberOfPizza1" name="numberOfPizza1" placeholder="0" value="<?php echo $pizza[0][2];?>" minlength="0" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[1][0];?></td>
                     <td><?php echo $pizza[1][1];?></td>
-                    <td><input type="number" id="$numberOfPizza2" name="numberOfPizza2" placeholder="0" value="<?php echo $numberOfPizza2?>" minlength="0" maxlength="20"></td>
+                    <td><input type="number" id="$numberOfPizza2" name="numberOfPizza2" placeholder="0" value="<?php echo $pizza[1][2];?>" minlength="0" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[2][0];?></td>
                     <td><?php echo $pizza[2][1];?></td>
-                    <td><input type="number" id="$numberOfPizza3" name="numberOfPizza3" placeholder="0" value="<?php echo $numberOfPizza3?>" minlength="0" maxlength="20"></td>
+                    <td><input type="number" id="$numberOfPizza3" name="numberOfPizza3" placeholder="0" value="<?php echo $pizza[2][2];?>" minlength="0" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[3][0];?></td>
                     <td><?php echo $pizza[3][1];?></td>
-                    <td><input type="number" id="$numberOfPizza4" name="numberOfPizza4" placeholder="0" value="<?php echo $numberOfPizza4?>" minlength="0" maxlength="20"></td>
+                    <td><input type="number" id="$numberOfPizza4" name="numberOfPizza4" placeholder="0" value="<?php echo $pizza[3][2];?>" minlength="0" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[4][0];?></td>
                     <td><?php echo $pizza[4][1];?></td>
-                    <td><input type="number" id="$numberOfPizza5" name="numberOfPizza5" placeholder="0" value="<?php echo $numberOfPizza5?>" minlength="0" maxlength="20"></td>
+                    <td><input type="number" id="$numberOfPizza5" name="numberOfPizza5" placeholder="0" value="<?php echo $pizza[4][2];?>" minlength="0" maxlength="20"></td>
                 </tr>
             </table>
 
@@ -172,37 +141,46 @@ switch ($deliveryMethod) {
                 <tr>
                     <td><?php echo $pizza[0][0];?></td>
                     <td><?php echo $pizza[0][1];?></td>
-                    <td><?php echo $numberOfPizza1?></td>
-                    <td></td>
+                    <td><?php echo $pizza[0][2];?></td>
+                    <td><?php echo $pizza[0][2] * $pizza[0][1];?></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[1][0];?></td>
                     <td><?php echo $pizza[1][1];?></td>
-                    <td><?php echo $numberOfPizza2?></td>
-                    <td></td>
+                    <td><?php echo $pizza[1][2]?></td>
+                    <td><?php echo $pizza[1][2] * $pizza[1][1];?></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[2][0];?></td>
                     <td><?php echo $pizza[2][1];?></td>
-                    <td><?php echo $numberOfPizza3?></td>
-                    <td></td>
+                    <td><?php echo $pizza[2][2]?></td>
+                    <td><?php echo $pizza[2][2] * $pizza[2][1];?></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[3][0];?></td>
                     <td><?php echo $pizza[3][1];?></td>
-                    <td><?php echo $numberOfPizza4?></td>
-                    <td></td>
+                    <td><?php echo $pizza[3][2]?></td>
+                    <td><?php echo $pizza[3][2] * $pizza[3][1];?></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[4][0];?></td>
                     <td><?php echo $pizza[4][1];?></td>
-                    <td><?php echo $numberOfPizza5?></td>
-                    <td></td>
+                    <td><?php echo $pizza[4][2]?></td>
+                    <td><?php echo $pizza[4][2] * $pizza[4][1];?></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
-                    <td><?php echo $pizzaPriceFinal?></td>
+                    <td>Bestelkosten</td>
+                    <td><?php echo $orderCosts?></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Totaalprijs</td>
+                    <td>
+                        <?php echo ($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1]) + $orderCosts;?>
+                    </td>
                 </tr>
             </table>
             <?php
@@ -215,6 +193,54 @@ switch ($deliveryMethod) {
             echo "Bestelling geplaatst op: " . $orderDate . ".\n";
             echo "Bestelmethode: 'Ophalen'.\n";
             echo "Bestelde pizza('s): " . $pizza1 . ".\n";
+            ?>
+            <table>
+                <tr>
+                    <th>Pizza naam</th>
+                    <th>Pizza Prijs</th>
+                    <th>Aantal bestelde pizza('s)</th>
+                    <th>Totaalprijs pizza('s)</th>
+                </tr>
+                <tr>
+                    <td><?php echo $pizza[0][0];?></td>
+                    <td><?php echo $pizza[0][1];?></td>
+                    <td><?php echo $pizza[0][2];?></td>
+                    <td><?php echo $pizza[0][2] * (float)$pizza[0][1];?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $pizza[1][0];?></td>
+                    <td><?php echo $pizza[1][1];?></td>
+                    <td><?php echo $pizza[1][2]?></td>
+                    <td><?php echo $pizza[1][2] * (float)$pizza[1][1];?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $pizza[2][0];?></td>
+                    <td><?php echo $pizza[2][1];?></td>
+                    <td><?php echo $pizza[2][2]?></td>
+                    <td><?php echo $pizza[2][2] * (float)$pizza[2][1];?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $pizza[3][0];?></td>
+                    <td><?php echo $pizza[3][1];?></td>
+                    <td><?php echo $pizza[3][2]?></td>
+                    <td><?php echo $pizza[3][2] * (float)$pizza[3][1];?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $pizza[4][0];?></td>
+                    <td><?php echo $pizza[4][1];?></td>
+                    <td><?php echo $pizza[4][2]?></td>
+                    <td><?php echo $pizza[4][2] * (float)$pizza[4][1];?></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Totaalprijs</td>
+                    <td>
+                        <?php echo ($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1]);?>
+                    </td>
+                </tr>
+            </table>
+            <?php
             break;
 }
-            ?>
+?>
