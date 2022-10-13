@@ -3,7 +3,20 @@ $name = '';
 $address = '';
 $postcode = '';
 $location = '';
+$dayOfTheWeek = date("w");
+if ($dayOfTheWeek == 4) {
+    echo "goed";
+}
+else {
+    echo "fout";
+}
 $orderDate = date("l/d/m/Y");
+if ($orderDate == "Monday") {
+    echo "Het is maandag";
+}
+else {
+    echo "Het is niet maandag";
+}
 echo $orderDate;
 $deliveryMethod = '';
 $numberOfPizza1 = 0;
@@ -140,38 +153,73 @@ switch ($deliveryMethod) {
                 </tr>
                 <tr>
                     <td><?php echo $pizza[0][0];?></td>
-                    <td><?php echo $pizza[0][1];?></td>
+                    <td><?php if ($dayOfTheWeek == "1") {
+                        echo $pizza[0][1] = 7.50;
+                        } else {
+                        echo $pizza[0][1] = 12.50;
+                        }?></td>
                     <td><?php echo $pizza[0][2];?></td>
                     <td><?php echo $pizza[0][2] * $pizza[0][1];?></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[1][0];?></td>
-                    <td><?php echo $pizza[1][1];?></td>
+                    <td><?php if ($dayOfTheWeek == "1") {
+                            echo $pizza[1][1] = 7.50;
+                        } else {
+                            echo $pizza[1][1] = 12.50;
+                        }?></td>
                     <td><?php echo $pizza[1][2]?></td>
                     <td><?php echo $pizza[1][2] * $pizza[1][1];?></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[2][0];?></td>
-                    <td><?php echo $pizza[2][1];?></td>
+                    <td><?php if ($dayOfTheWeek == "1") {
+                            echo $pizza[2][1] = 7.50;
+                        } else {
+                            echo $pizza[2][1] = 13.95;
+                        }?></td>
                     <td><?php echo $pizza[2][2]?></td>
                     <td><?php echo $pizza[2][2] * $pizza[2][1];?></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[3][0];?></td>
-                    <td><?php echo $pizza[3][1];?></td>
+                    <td><?php if ($dayOfTheWeek == "1") {
+                            echo $pizza[3][1] = 7.50;
+                        } else {
+                            echo $pizza[3][1] = 11.50;
+                        }?></td>
                     <td><?php echo $pizza[3][2]?></td>
                     <td><?php echo $pizza[3][2] * $pizza[3][1];?></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[4][0];?></td>
-                    <td><?php echo $pizza[4][1];?></td>
+                    <td><?php if ($dayOfTheWeek == "1") {
+                            echo $pizza[4][1] = 7.50;
+                        } else {
+                            echo $pizza[4][1] = 14.50;
+                        }?></td>
                     <td><?php echo $pizza[4][2]?></td>
                     <td><?php echo $pizza[4][2] * $pizza[4][1];?></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
-                    <td>Bestelkosten</td>
+                    <td>Kosten (excl. bezorgkosten)</td>
+                    <td><?php $pizzaPriceTotal = ($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1]);
+                        if ($dayOfTheWeek == 4) {
+                        if ($pizzaPriceTotal >= 20) {
+                            $pizzaPriceTotal = (($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1])) *0.85;
+                            echo $pizzaPriceTotal . " (U heeft 15% korting.)";
+                        }
+                        else {
+                            echo $pizzaPriceTotal;
+                        }
+                    }?></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Bezorgkosten</td>
                     <td><?php echo $orderCosts?></td>
                 </tr>
                 <tr>
@@ -179,7 +227,7 @@ switch ($deliveryMethod) {
                     <td></td>
                     <td>Totaalprijs</td>
                     <td>
-                        <?php echo ($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1]) + $orderCosts;?>
+                        <?php echo $pizzaPriceTotal + $orderCosts;?>
                     </td>
                 </tr>
             </table>
@@ -203,44 +251,77 @@ switch ($deliveryMethod) {
                 </tr>
                 <tr>
                     <td><?php echo $pizza[0][0];?></td>
-                    <td><?php echo $pizza[0][1];?></td>
+                    <td><?php if ($dayOfTheWeek == "1") {
+                            echo $pizza[0][1] = 7.50;
+                        } else {
+                            echo $pizza[0][1] = 12.50;
+                        }?></td>
                     <td><?php echo $pizza[0][2];?></td>
-                    <td><?php echo $pizza[0][2] * (float)$pizza[0][1];?></td>
+                    <td><?php echo $pizza[0][2] * $pizza[0][1];?></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[1][0];?></td>
-                    <td><?php echo $pizza[1][1];?></td>
+                    <td><?php if ($dayOfTheWeek == "1") {
+                            echo $pizza[1][1] = 7.50;
+                        } else {
+                            echo $pizza[1][1] = 12.50;
+                        }?></td>
                     <td><?php echo $pizza[1][2]?></td>
-                    <td><?php echo $pizza[1][2] * (float)$pizza[1][1];?></td>
+                    <td><?php echo $pizza[1][2] * $pizza[1][1];?></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[2][0];?></td>
-                    <td><?php echo $pizza[2][1];?></td>
+                    <td><?php if ($dayOfTheWeek == "1") {
+                            echo $pizza[2][1] = 7.50;
+                        } else {
+                            echo $pizza[2][1] = 13.95;
+                        }?></td>
                     <td><?php echo $pizza[2][2]?></td>
-                    <td><?php echo $pizza[2][2] * (float)$pizza[2][1];?></td>
+                    <td><?php echo $pizza[2][2] * $pizza[2][1];?></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[3][0];?></td>
-                    <td><?php echo $pizza[3][1];?></td>
+                    <td><?php if ($dayOfTheWeek == "1") {
+                            echo $pizza[3][1] = 7.50;
+                        } else {
+                            echo $pizza[3][1] = 11.50;
+                        }?></td>
                     <td><?php echo $pizza[3][2]?></td>
-                    <td><?php echo $pizza[3][2] * (float)$pizza[3][1];?></td>
+                    <td><?php echo $pizza[3][2] * $pizza[3][1];?></td>
                 </tr>
                 <tr>
                     <td><?php echo $pizza[4][0];?></td>
-                    <td><?php echo $pizza[4][1];?></td>
+                    <td><?php if ($dayOfTheWeek == "1") {
+                            echo $pizza[4][1] = 7.50;
+                        } else {
+                            echo $pizza[4][1] = 14.50;
+                        }?></td>
                     <td><?php echo $pizza[4][2]?></td>
-                    <td><?php echo $pizza[4][2] * (float)$pizza[4][1];?></td>
+                    <td><?php echo $pizza[4][2] * $pizza[4][1];?></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td>Totaalprijs</td>
-                    <td>
-                        <?php echo ($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1]);?>
-                    </td>
+                    <td><?php $pizzaPriceTotal = ($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1]);
+                        if ($dayOfTheWeek == 4) {
+                            if ($pizzaPriceTotal >= 20) {
+                                $pizzaPriceTotal = (($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1])) *0.85;
+                                echo $pizzaPriceTotal . " (U heeft 15% korting.)";
+                            }
+                            else {
+                                echo $pizzaPriceTotal;
+                            }
+                        }?></td>
                 </tr>
             </table>
             <?php
             break;
 }
 ?>
+
+
+<!--echo (($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1])) * 0.85;-->
+<!--} else {-->
+<!--echo ($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1])-->
+<!--}-->
