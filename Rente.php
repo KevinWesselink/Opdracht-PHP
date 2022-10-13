@@ -1,3 +1,13 @@
+<?php
+
+if (isset($_POST["submit"])) {
+    $inleg = $_POST["inleg"];
+    $rente = $_POST["rente"];
+    $keuze = $_POST["keuze"];
+}
+
+?>
+
 <!doctype html>
 <html lang="nl">
 <head>
@@ -15,6 +25,32 @@
         <a href="./Pizza.php">Pizza</a>
         <a href="./Rente.php">Rente</a>
     </nav>
+
+    <form>
+        <div>
+            Ingelegd bedrag: <input type="number" id="inleg" name="inleg" placeholder="Vul een getal in" value="" required minlength="1" maxlength="1000">
+        </div>
+
+        <div>
+            Rentepercentage: <input type="number" id="rente" name="rente" placeholder="Vul een getal in" value="" required minlength="1" maxlength="1000">
+        </div>
+
+        <div>
+            <input type="radio" name="keuze" id="tienJaar" value="tienJaar" required>
+            <label for="tienJaar">Eindbedrag na 10 jaar</label>
+        </div>
+
+        <div>
+            <input type="radio" name="keuze" id="verdubbeling" value="verdubbeling" required>
+            <label for="verdubbeling">Eindbedrag verdubbeld</label>
+        </div>
+
+        <div>
+            <input type="submit" name="submit" value="Bereken">
+        </div>
+    </form>
+
+
 
 </body>
 </html>
