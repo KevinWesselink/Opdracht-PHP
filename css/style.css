@@ -1,0 +1,84 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.dataInput {
+    display: flex;
+    justify-content: space-around;
+}
+
+.inputField {
+    display: flex;
+    justify-content: space-around;
+    margin: 5px;
+}
+
+.pizzaLabel {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.pizzaInput {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.deliveryMethodInput {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.deliveryMethod {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 5px;
+}
+
+.submitButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+table {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid;
+}
+
+.margin {
+    margin-left: 5px;
+}
+
+.orderTable {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+hr {
+    margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.border {
+    border: 1px solid;
+}
+
+.borderData {
+    border: 1px solid;
+    margin: 10px 10px 20px 10px;
+    padding: 5px;
+}
