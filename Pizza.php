@@ -25,11 +25,13 @@ $pizza = array (
         array("Pizza Quattro Formaggi", 14.50, $numberOfPizza5)
 );
 
-//if(maandag){
-//$pizza[0][1] = 7.50;
-//$pizza[1][1] = 7.50;
-
-//}
+if ($dayOfTheWeek == "5") {
+    $pizza[0][1] = 7.50;
+    $pizza[1][1] = 7.50;
+    $pizza[2][1] = 7.50;
+    $pizza[3][1] = 7.50;
+    $pizza[4][1] = 7.50;
+}
 
 if (isset($_POST["submit"])) {
     $name = $_POST["name"];
@@ -93,28 +95,28 @@ if (isset($_POST["submit"])) {
                         </tr>
                         <tr>
                             <td><?php echo $pizza[0][0];?></td>
-                            <td><?php echo "€" . number_format($pizza[0][1],2);?></td>
+                            <td><?php echo "€" . number_format($pizza[0][1],2, ",");?></td>
                             <td><input type="number" id="$numberOfPizza1" name="numberOfPizza1" placeholder="0" value="<?php echo $pizza[0][2];?>" min="0" max="20"></td>
                         </tr>
                         <tr>
                             <td><?php echo $pizza[1][0];?></td>
-                            <td><?php echo "€" . $pizza[1][1];?></td>
-                            <td><input type="number" id="$numberOfPizza2" name="numberOfPizza2" placeholder="0" value="<?php echo $pizza[1][2];?>" minlength="0" maxlength="20"></td>
+                            <td><?php echo "€" . number_format($pizza[1][1],2, ",");?></td>
+                            <td><input type="number" id="$numberOfPizza2" name="numberOfPizza2" placeholder="0" value="<?php echo $pizza[1][2];?>" min="0" max="20"></td>
                         </tr>
                         <tr>
                             <td><?php echo $pizza[2][0];?></td>
-                            <td><?php echo "€" . $pizza[2][1];?></td>
-                            <td><input type="number" id="$numberOfPizza3" name="numberOfPizza3" placeholder="0" value="<?php echo $pizza[2][2];?>" minlength="0" maxlength="20"></td>
+                            <td><?php echo "€" . number_format($pizza[2][1],2, ",");?></td>
+                            <td><input type="number" id="$numberOfPizza3" name="numberOfPizza3" placeholder="0" value="<?php echo $pizza[2][2];?>" min="0" max="20"></td>
                         </tr>
                         <tr>
                             <td><?php echo $pizza[3][0];?></td>
-                            <td><?php echo "€" . $pizza[3][1];?></td>
-                            <td><input type="number" id="$numberOfPizza4" name="numberOfPizza4" placeholder="0" value="<?php echo $pizza[3][2];?>" minlength="0" maxlength="20"></td>
+                            <td><?php echo "€" . number_format($pizza[3][1],2, ",");?></td>
+                            <td><input type="number" id="$numberOfPizza4" name="numberOfPizza4" placeholder="0" value="<?php echo $pizza[3][2];?>" min="0" max="20"></td>
                         </tr>
                         <tr>
                             <td><?php echo $pizza[4][0];?></td>
-                            <td><?php echo "€" . $pizza[4][1];?></td>
-                            <td><input type="number" id="$numberOfPizza5" name="numberOfPizza5" placeholder="0" value="<?php echo $pizza[4][2];?>" minlength="0" maxlength="20"></td>
+                            <td><?php echo "€" . number_format($pizza[4][1],2, ",");?></td>
+                            <td><input type="number" id="$numberOfPizza5" name="numberOfPizza5" placeholder="0" value="<?php echo $pizza[4][2];?>" min="0" max="20"></td>
                         </tr>
                     </table>
                 </div>
@@ -140,6 +142,21 @@ if (isset($_POST["submit"])) {
 </html>
 
 <?php
+//Poging om alle waardes van de multi-dimensional array te printen
+$keys = array_keys($pizza);
+for ($i = 0; $i < count($pizza); $i++) {
+    echo (float)$pizza[$i] . "{<br>";
+    foreach($pizza[$keys[$i]] as $key => $value) {
+        echo $key . " : " . $value . "<br>";
+    }
+    echo "}<br>";
+}?>
+
+<tabel>
+    
+</tabel>
+
+<?php
 switch ($deliveryMethod) {
     case "bezorgen": ?>
         <div class="border">
@@ -160,63 +177,43 @@ switch ($deliveryMethod) {
                     </tr>
                     <tr>
                         <td><?php echo $pizza[0][0];?></td>
-                        <td><?php if ($dayOfTheWeek == "1") {
-                            echo "€" . number_format($pizza[0][1] = 7.50,2);
-                            } else {
-                            echo "€" . number_format($pizza[0][1],2);
-                            }?></td>
+                        <td><?php echo "€" . number_format($pizza[0][1],2, ",")?></td>
                         <td><?php echo $pizza[0][2];?></td>
-                        <td><?php echo "€" . $pizza[0][2] * $pizza[0][1];?></td>
+                        <td><?php echo "€" . number_format($pizza[0][2] * $pizza[0][1],2, ",");?></td>
                     </tr>
                     <tr>
                         <td><?php echo $pizza[1][0];?></td>
-                        <td><?php if ($dayOfTheWeek == "1") {
-                                echo "€" . $pizza[1][1] = 7.50;
-                            } else {
-                                echo "€" . $pizza[1][1] = 12.50;
-                            }?></td>
+                        <td><?php echo "€" . number_format($pizza[1][1],2, ",")?></td>
                         <td><?php echo $pizza[1][2]?></td>
-                        <td><?php echo "€" . $pizza[1][2] * $pizza[1][1];?></td>
+                        <td><?php echo "€" . number_format($pizza[1][2] * $pizza[1][1],2, ",");?></td>
                     </tr>
                     <tr>
                         <td><?php echo $pizza[2][0];?></td>
-                        <td><?php if ($dayOfTheWeek == "1") {
-                                echo "€" . $pizza[2][1] = 7.50;
-                            } else {
-                                echo "€" . $pizza[2][1] = 13.95;
-                            }?></td>
+                        <td><?php echo "€" . number_format($pizza[2][1],2, ",")?></td>
                         <td><?php echo $pizza[2][2]?></td>
-                        <td><?php echo "€" . $pizza[2][2] * $pizza[2][1];?></td>
+                        <td><?php echo "€" . number_format($pizza[2][2] * $pizza[2][1],2, ",");?></td>
                     </tr>
                     <tr>
                         <td><?php echo $pizza[3][0];?></td>
-                        <td><?php if ($dayOfTheWeek == "1") {
-                                echo "€" . $pizza[3][1] = 7.50;
-                            } else {
-                                echo "€" . $pizza[3][1] = 11.50;
-                            }?></td>
+                        <td><?php echo "€" . number_format($pizza[3][1],2, "")?></td>
                         <td><?php echo $pizza[3][2]?></td>
-                        <td><?php echo "€" . $pizza[3][2] * $pizza[3][1];?></td>
+                        <td><?php echo "€" . number_format($pizza[3][2] * $pizza[3][1],2, ",");?></td>
                     </tr>
                     <tr>
                         <td><?php echo $pizza[4][0];?></td>
-                        <td><?php if ($dayOfTheWeek == "1") {
-                                echo "€" . $pizza[4][1] = 7.50;
-                            } else {
-                                echo "€" . $pizza[4][1] = 14.50;
-                            }?></td>
+                        <td><?php echo "€" . number_format($pizza[4][1],2, ",")?></td>
                         <td><?php echo $pizza[4][2]?></td>
-                        <td><?php echo "€" . $pizza[4][2] * $pizza[4][1];?></td>
+                        <td><?php echo "€" . number_format($pizza[4][2] * $pizza[4][1],2, ",");?></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <td>Kosten (excl. bezorgkosten)</td>
                         <td><?php $pizzaPriceTotal = ($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1]);
-                            echo "€" . $pizzaPriceTotal?></td>
+                            echo "€" . number_format($pizzaPriceTotal,2, ",")?></td>
                     </tr>
                     <tr>
-                        <?php if ($dayOfTheWeek == 5) { ?>
+                        <?php if ($dayOfTheWeek == 4) { ?>
                             <?php
                             if ($pizzaPriceTotal >= 20) {
                                 $discount = (($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1])) *0.15;
@@ -224,27 +221,27 @@ switch ($deliveryMethod) {
                             <td></td>
                             <td></td>
                             <td>15% korting</td>
-                            <td><?php echo "€" . $discount?></td>
+                            <td><?php echo "€" . number_format($discount,2, ",")?></td>
                             <?php }
+                            else {
+                                $discount = 0;
+                            }
                         }?>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <td>Bezorgkosten</td>
-                        <td><?php echo "€" . $orderCosts?></td>
+                        <td><?php echo "€" . number_format($orderCosts,2, ",")?></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <td>Totaalprijs</td>
                         <td>
-                            <?php if ($pizzaPriceTotal <20 ) {
-                                $discount = 0;
-                            }?>
                             <?php
                                 $pizzaPriceFinal = $pizzaPriceTotal - $discount + $orderCosts;
-                                echo "€" . $pizzaPriceFinal
+                                echo "€" . number_format($pizzaPriceFinal,2, ",")
                             ?>
                         </td>
                     </tr>
@@ -274,63 +271,43 @@ switch ($deliveryMethod) {
                     </tr>
                     <tr>
                         <td><?php echo $pizza[0][0];?></td>
-                        <td><?php if ($dayOfTheWeek == "1") {
-                                echo "€" . $pizza[0][1] = 7.50;
-                            } else {
-                                echo "€" . $pizza[0][1] = 12.50;
-                            }?></td>
+                        <td><?php echo "€" . number_format($pizza[0][1],2)?></td>
                         <td><?php echo $pizza[0][2];?></td>
-                        <td><?php echo "€" . $pizza[0][2] * $pizza[0][1];?></td>
+                        <td><?php echo "€" . number_format($pizza[0][2] * $pizza[0][1],2);?></td>
                     </tr>
                     <tr>
                         <td><?php echo $pizza[1][0];?></td>
-                        <td><?php if ($dayOfTheWeek == "1") {
-                                echo "€" . $pizza[1][1] = 7.50;
-                            } else {
-                                echo "€" . $pizza[1][1] = 12.50;
-                            }?></td>
+                        <td><?php echo "€" . number_format($pizza[1][1],2)?></td>
                         <td><?php echo $pizza[1][2]?></td>
-                        <td><?php echo "€" . $pizza[1][2] * $pizza[1][1];?></td>
+                        <td><?php echo "€" . number_format($pizza[1][2] * $pizza[1][1],2);?></td>
                     </tr>
                     <tr>
                         <td><?php echo $pizza[2][0];?></td>
-                        <td><?php if ($dayOfTheWeek == "1") {
-                                echo "€" . $pizza[2][1] = 7.50;
-                            } else {
-                                echo "€" . $pizza[2][1] = 13.95;
-                            }?></td>
+                        <td><?php echo "€" . number_format($pizza[2][1],2)?></td>
                         <td><?php echo $pizza[2][2]?></td>
-                        <td><?php echo "€" . $pizza[2][2] * $pizza[2][1];?></td>
+                        <td><?php echo "€" . number_format($pizza[2][2] * $pizza[2][1],2);?></td>
                     </tr>
                     <tr>
                         <td><?php echo $pizza[3][0];?></td>
-                        <td><?php if ($dayOfTheWeek == "1") {
-                                echo "€" . $pizza[3][1] = 7.50;
-                            } else {
-                                echo "€" . $pizza[3][1] = 11.50;
-                            }?></td>
+                        <td><?php echo "€" . number_format($pizza[3][1],2)?></td>
                         <td><?php echo $pizza[3][2]?></td>
-                        <td><?php echo "€" . $pizza[3][2] * $pizza[3][1];?></td>
+                        <td><?php echo "€" . number_format($pizza[3][2] * $pizza[3][1],2);?></td>
                     </tr>
                     <tr>
                         <td><?php echo $pizza[4][0];?></td>
-                        <td><?php if ($dayOfTheWeek == "1") {
-                                echo "€" . $pizza[4][1] = 7.50;
-                            } else {
-                                echo "€" . $pizza[4][1] = 14.50;
-                            }?></td>
+                        <td><?php echo "€" . number_format($pizza[4][1],2)?></td>
                         <td><?php echo $pizza[4][2]?></td>
-                        <td><?php echo "€" . $pizza[4][2] * $pizza[4][1];?></td>
+                        <td><?php echo "€" . number_format($pizza[4][2] * $pizza[4][1],2);?></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <td>Kosten</td>
                         <td><?php $pizzaPriceTotal = ($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1]);
-                            echo "€" . $pizzaPriceTotal?></td>
+                            echo "€" . number_format($pizzaPriceTotal,2)?></td>
                     </tr>
                     <tr>
-                        <?php if ($dayOfTheWeek == 5) { ?>
+                        <?php if ($dayOfTheWeek == 4) { ?>
                             <?php
                             if ($pizzaPriceTotal >= 20) {
                                 $discount = (($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1])) *0.15;
@@ -338,8 +315,11 @@ switch ($deliveryMethod) {
                                 <td></td>
                                 <td></td>
                                 <td>15% korting</td>
-                                <td><?php echo "€" . $discount?></td>
+                                <td><?php echo "€" . number_format($discount,2)?></td>
                             <?php }
+                            else {
+                                $discount = 0;
+                            }
                         }?>
                     </tr>
                     <tr>
@@ -347,12 +327,9 @@ switch ($deliveryMethod) {
                         <td></td>
                         <td>Totaalprijs</td>
                         <td>
-                            <?php if ($pizzaPriceTotal <20 ) {
-                                $discount = 0;
-                            }?>
                             <?php
                             $pizzaPriceFinal = $pizzaPriceTotal - $discount;
-                            echo "€" . $pizzaPriceFinal;
+                            echo "€" . number_format($pizzaPriceFinal,2);
                             ?>
                         </td>
                     </tr>
