@@ -25,7 +25,7 @@ $pizza = array (
         array("Pizza Quattro Formaggi", 14.50, $numberOfPizza5)
 );
 
-if ($dayOfTheWeek == "5") {
+if ($dayOfTheWeek == "1") {
     $pizza[0][1] = 7.50;
     $pizza[1][1] = 7.50;
     $pizza[2][1] = 7.50;
@@ -144,17 +144,26 @@ if (isset($_POST["submit"])) {
 <?php
 //Poging om alle waardes van de multi-dimensional array te printen
 $keys = array_keys($pizza);
+echo "<table>
+            <tr>
+                <th>Naam</th>
+                <th>Prijs</th>
+                <th>Aantal</th>
+            </tr>
+";
 for ($i = 0; $i < count($pizza); $i++) {
-    echo (float)$pizza[$i] . "{<br>";
     foreach($pizza[$keys[$i]] as $key => $value) {
-        echo $key . " : " . $value . "<br>";
+        echo "
+            <tr>
+                <td>$value</td>               
+                <td>$value</td>               
+                <td>$value</td>               
+            </tr>
+        ";
     }
-    echo "}<br>";
+    echo "</table>";
+    echo "<br>";
 }?>
-
-<tabel>
-    
-</tabel>
 
 <?php
 switch ($deliveryMethod) {
@@ -216,17 +225,16 @@ switch ($deliveryMethod) {
                         <?php if ($dayOfTheWeek == 4) { ?>
                             <?php
                             if ($pizzaPriceTotal >= 20) {
-                                $discount = (($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1])) *0.15;
+                                $discount = $pizzaPriceTotal * 0.15;
+                            } else {
+                                $discount = 0;
+                            }
                             ?>
                             <td></td>
                             <td></td>
                             <td>15% korting</td>
                             <td><?php echo "€" . number_format($discount,2, ",")?></td>
-                            <?php }
-                            else {
-                                $discount = 0;
-                            }
-                        }?>
+                        <?php } ?>
                     </tr>
                     <tr>
                         <td></td>
@@ -310,17 +318,16 @@ switch ($deliveryMethod) {
                         <?php if ($dayOfTheWeek == 4) { ?>
                             <?php
                             if ($pizzaPriceTotal >= 20) {
-                                $discount = (($pizza[0][2] * $pizza[0][1]) + ($pizza[1][2] * $pizza[1][1]) + ($pizza[2][2] * $pizza[2][1]) + ($pizza[3][2] * $pizza[3][1]) + ($pizza[4][2] * $pizza[4][1])) *0.15;
-                                ?>
-                                <td></td>
-                                <td></td>
-                                <td>15% korting</td>
-                                <td><?php echo "€" . number_format($discount,2)?></td>
-                            <?php }
-                            else {
+                                $discount = $pizzaPriceTotal * 0.15;
+                            } else {
                                 $discount = 0;
                             }
-                        }?>
+                            ?>
+                            <td></td>
+                            <td></td>
+                            <td>15% korting</td>
+                            <td><?php echo "€" . number_format($discount,2, ",")?></td>
+                        <?php } ?>
                     </tr>
                     <tr>
                         <td></td>
