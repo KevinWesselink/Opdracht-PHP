@@ -6,6 +6,10 @@ if (isset($_POST["submit"])) {
     $keuze = $_POST["keuze"];
 }
 
+function berekenRente($inleg, $rente) {
+    $nwBedrag = $inleg * (1 + $rente / 100);
+}
+
 ?>
 
 <!doctype html>
@@ -28,11 +32,11 @@ if (isset($_POST["submit"])) {
 
     <form>
         <div>
-            Ingelegd bedrag: <input type="number" id="inleg" name="inleg" placeholder="Vul een getal in" value="" required minlength="1" maxlength="1000">
+            Ingelegd bedrag: <input type="number" id="inleg" name="inleg" placeholder="Vul een getal in" value="" required min="1" max="1000">
         </div>
 
         <div>
-            Rentepercentage: <input type="number" id="rente" name="rente" placeholder="Vul een getal in" value="" required minlength="1" maxlength="1000">
+            Rentepercentage: <input type="number" id="rente" name="rente" placeholder="Vul een getal in" value="" required min="1" max="1000">
         </div>
 
         <div>
@@ -49,8 +53,5 @@ if (isset($_POST["submit"])) {
             <input type="submit" name="submit" value="Bereken">
         </div>
     </form>
-
-
-
 </body>
 </html>
