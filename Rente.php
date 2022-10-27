@@ -1,13 +1,13 @@
 <?php
 
+$inleg = '';
+$rente = '';
+$teller = 1;
+
 if (isset($_POST["submit"])) {
     $inleg = $_POST["inleg"];
     $rente = $_POST["rente"];
     $keuze = $_POST["keuze"];
-}
-
-function berekenRente($inleg, $rente) {
-    $nwBedrag = $inleg * (1 + $rente / 100);
 }
 
 ?>
@@ -32,20 +32,20 @@ function berekenRente($inleg, $rente) {
 
     <form>
         <div>
-            Ingelegd bedrag: <input type="number" id="inleg" name="inleg" placeholder="Vul een getal in" value="" required min="1" max="1000">
+            Ingelegd bedrag: <input type="number" id="inleg" name="inleg" placeholder="Vul een getal in" value="<?php echo $inleg?>" required min="1" max="1000">
         </div>
 
         <div>
-            Rentepercentage: <input type="number" id="rente" name="rente" placeholder="Vul een getal in" value="" required min="1" max="1000">
+            Rentepercentage: <input type="number" id="rente" name="rente" placeholder="Vul een getal in" value="<?php echo $rente?>" required min="1" max="200">
         </div>
 
         <div>
-            <input type="radio" name="keuze" id="tienJaar" value="tienJaar" required>
+            <input type="radio" name="keuze" id="tienJaar" value="<?php echo "tienJaar"?>" required>
             <label for="tienJaar">Eindbedrag na 10 jaar</label>
         </div>
 
         <div>
-            <input type="radio" name="keuze" id="verdubbeling" value="verdubbeling" required>
+            <input type="radio" name="keuze" id="verdubbeling" value="<?php echo "verdubbeling"?>" required>
             <label for="verdubbeling">Eindbedrag verdubbeld</label>
         </div>
 
@@ -53,5 +53,44 @@ function berekenRente($inleg, $rente) {
             <input type="submit" name="submit" value="Bereken">
         </div>
     </form>
+
+    <?php
+
+    if (isset($_POST["submit"])) {
+        $rente = $rente / 100;
+        $print = array();
+
+        if ($keuze = "tienJaar") {
+            for ($i = 0; $i < 10; $i++) {
+                $inleg = $inleg * $rente;
+                $print($i);
+            }
+        }
+
+        if ($keuze = "verdubbeling") {
+            $inlegDubbel = $inleg * 2;
+            for ($i = 0; $i < $inlegDubbel; $i++) {
+                $inleg = $inleg * $rente;
+                $print($i);
+            }
+        }
+
+        echo "
+            <table>
+                <tr>
+                    <th>Jaar</th>
+                    <th>Bedrag</th>
+                </tr>
+                <tr>
+                    <td>" . $teller . "</td>
+                    <td>" . $print[$i] . "</td>
+                    $teller++;
+                </tr>
+            </table>
+        ";
+    }
+?>
+
+
 </body>
 </html>
