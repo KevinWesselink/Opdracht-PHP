@@ -159,11 +159,11 @@ if (isset($_POST["submit"])) {
             //Poging om alle waardes van de multi-dimensional array te printen
             $keys = array_keys($pizza);
             echo "<table>
-                        <tr>
-                            <th>Naam</th>
-                            <th>Prijs</th>
-                            <th>Aantal</th>
-                        </tr>
+                <tr>
+                    <th>Naam</th>
+                    <th>Prijs</th>
+                    <th>Aantal</th>
+                </tr>
             ";
             for ($i = 0; $i < count($pizza); $i++) {
                 if ($pizza[$i][2] > 0) {
