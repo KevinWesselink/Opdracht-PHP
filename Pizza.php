@@ -186,7 +186,7 @@ if (isset($_POST["submit"])) {
 
             $discount = 0;
 
-            if ($dayOfTheWeek == 4) {
+            if ($dayOfTheWeek == 5) {
                 if ($pizzaPriceTotal > 20) {
                     $discount = $pizzaPriceTotal * 0.15;
                 }
