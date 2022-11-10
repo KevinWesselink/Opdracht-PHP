@@ -11,7 +11,6 @@ $numberOfPizza2 = "";
 $numberOfPizza3 = "";
 $numberOfPizza4 = "";
 $numberOfPizza5 = "";
-$orderCosts = 5;
 $numberOfPizza1 = 0;
 $numberOfPizza2 = 0;
 $numberOfPizza3 = 0;
@@ -200,6 +199,7 @@ if (isset($_POST["submit"])) {
             }
 
             if ($deliveryMethod == 'bezorgen') {
+                $orderCosts = 5;
                 echo "
                     <tr>
                         <td><strong>Bezorgkosten</strong></td>
@@ -207,6 +207,8 @@ if (isset($_POST["submit"])) {
                         <td></td>
                     </tr>
                 ";
+            } else {
+                $orderCosts = 0;
             }
 
             $pizzaPriceFinal = $pizzaPriceTotal - $discount + $orderCosts;
